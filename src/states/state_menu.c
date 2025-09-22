@@ -32,11 +32,10 @@ static void Menu_Init(void) {
         pyramidEdges[i][1] = edges[i][1];
     }
 
-    camera.position = (Vector3){5.0f, 5.0f, 5.0f};
-    camera.target = (Vector3){0.0f, 1.0f, 0.0f};
+    camera.position = (Vector3){5.0f, 0.0f, 0.0f};
+    camera.target = (Vector3){0.0f, 0.0f, 0.0f};
     camera.up = (Vector3){0.0f, 1.0f, 0.0f};
     camera.fovy = 45.0f;
-
 }
 
 static void Menu_Enter(void) { TraceLog(LOG_INFO, "Menu entered!"); }

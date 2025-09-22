@@ -11,7 +11,7 @@ STATE_DECLARE(PauseState);
 
 // Main entry point
 int main(void) {
-	SetConfigFlags(FLAG_MSAA_4X_HINT); // Anti-Aliasing 4x
+	SetConfigFlags(FLAG_VSYNC_HINT | FLAG_MSAA_4X_HINT); // Anti-Aliasing 4x
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Raylib Tiny Gamestate Example (Multi States)");
     SetTargetFPS(60);
 

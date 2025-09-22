@@ -18,11 +18,11 @@ static int ballStacks = 8; // number of segments vertically
 static float floorY = 0.0f;
 static float leftX = -3.5f, rightX = 3.5f;
 
-static float gravity = -6.0f;       // gravité plus forte
-static float horizontalSpeed = 1.0f; // plus lent que avant
+static float gravity = -6.0f;           // Gravity acceleration
+static float horizontalSpeed = 1.0f;    // Horizontal speed of the ball
 
-static float ballRotationY = 0.0f; // rotation en degrés
-static float rotationSpeed = 200.0f; // degrés par seconde
+static float ballRotationY = 0.0f;      // Rotation around Y axis
+static float rotationSpeed = 200.0f;    // Degrees per second
 static Vector3 rotationAxis = {0};
 
 void DrawBoingBall(Vector3 center, float radius, int slices, int stacks, float rotationY, float tiltAngle);
@@ -30,8 +30,8 @@ void DrawHorizontalGrid(Vector3 center, int rows, int cols, float spacing, Color
 void DrawVerticalGrid(Vector3 center, int rows, int cols, float spacing, Color color);
 
 static void Game_Init(void) {
-	ballPos = (Vector3){leftX, ballRadius, 3.01f}; // start at left side
-    ballVelocity = (Vector3){horizontalSpeed, sqrtf(2.0f * -gravity * ballHeight), 0.0f}; // initial velocity
+	ballPos = (Vector3){leftX, ballRadius, 3.01f};                                          // start at left side
+    ballVelocity = (Vector3){horizontalSpeed, sqrtf(2.0f * -gravity * ballHeight), 0.0f};   // initial velocity
 
 	rotationAxis = (Vector3){1.0f, sinf(DEG2RAD*30.0f), 0.0f};
 
@@ -50,7 +50,7 @@ static void Game_Update(float dt) {
 	// Update ball position
 	ballPos.x += ballVelocity.x * dt;
 
-    // Rebond sur les limites
+    // Limits left/right
     if (ballPos.x - ballRadius < leftX) {
         ballPos.x = leftX + ballRadius;
         ballVelocity.x *= -1.0f;
@@ -63,18 +63,19 @@ static void Game_Update(float dt) {
 		rotationSpeed *= -1;
     }
 
-	// Vertical avec gravité
-    ballVelocity.y += gravity * dt;        // accélération gravité
+	// Vertical movement
+    ballVelocity.y += gravity * dt;     // Gravity affects vertical velocity
     ballPos.y += ballVelocity.y * dt;
 
     // Rebond sur le sol
     if (ballPos.y - ballRadius < floorY) {
         ballPos.y = floorY + ballRadius;
-        // On redonne la vitesse pour atteindre la hauteur désirée
+
+        // Given the desired jump height (h) and gravity (g), the initial velocity (v) can be calculated using the formula: v = sqrt(2 * g * h)
         ballVelocity.y = sqrtf(2.0f * -gravity * ballHeight); // 2.0f = hauteur désirée
     }
 
-	// Rotation verticale
+	// Vertical rotation
 	ballRotationY += rotationSpeed * dt;
 	if(ballRotationY >= 360.0f) ballRotationY -= 360.0f;
     if(ballRotationY < 0.0f) ballRotationY += 360.0f;

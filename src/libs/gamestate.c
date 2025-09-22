@@ -42,3 +42,8 @@ void GSM_Draw(GamestateManager* gsm) {
     if (gsm->top >= 0 && gsm->stack[gsm->top]->draw)
         gsm->stack[gsm->top]->draw();
 }
+
+State *GSM_GetPrevious(GamestateManager *gsm) {
+    if (gsm->top > 0) return gsm->stack[gsm->top - 1];
+    return NULL;
+}

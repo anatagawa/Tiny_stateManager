@@ -11,6 +11,7 @@ void GSM_Push(GamestateManager* gsm, State* to);
 void GSM_Pop(GamestateManager* gsm);
 void GSM_Update(GamestateManager* gsm, float dt);
 void GSM_Draw(GamestateManager* gsm);
+State *GSM_GetPrevious(GamestateManager *gsm);
 
 //-----------------------------------------------------------------------------------------------
 // Macro helper to declare states easily
