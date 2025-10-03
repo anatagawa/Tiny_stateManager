@@ -115,7 +115,7 @@ After Push(GameState):
 After Pop():
 [ MenuState ]   <- current state
 ```
-Et un **Switch** remplace directement l’état courant :
+And a **Switch** replaces the current state :
 
 ```scss
 Before Switch(Menu -> Game):
